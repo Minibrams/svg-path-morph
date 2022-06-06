@@ -5,6 +5,7 @@
 [![version](http://img.shields.io/npm/v/svg-path-morph.svg?style=flat)](https://www.npmjs.org/package/svg-path-morph)
 
 A simple library for morphing between variations of SVG paths.
+Use `svg-path-morph` to smoothly morph between X variations of the same SVG path (i.e. same commands, different values).
 
 
 # Installation
@@ -14,9 +15,8 @@ npm install --save svg-path-morph
 
 # Demo
 
-Use `svg-path-morph` to smoothly morph between X variations of the same SVG path (i.e. same commands, different values):
+https://user-images.githubusercontent.com/8108085/172225727-31746959-2652-44ae-b149-de1bb1c4e0c1.mp4
 
-https://user-images.githubusercontent.com/8108085/172174667-2a9db2d4-0360-4270-bf2b-f5e0f10eb42c.mp4
 
 # Usage
 ```typescript
