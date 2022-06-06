@@ -17,7 +17,6 @@ const paths = {
   botRight: document.getElementById('bot-right').getAttribute('d')
 }
 
-let x, y = 0
 const compiled = compile([
   paths.topLeft,
   paths.topRight,
@@ -34,8 +33,8 @@ const clamp = (value, min, max) => {
 }
 
 window.addEventListener('mousemove', (e) => {
-  x = (e.clientX - bounds.left) / bounds.width
-  y = (e.clientY - bounds.top) / bounds.height
+  let x = (e.clientX - bounds.left) / bounds.width
+  let y = (e.clientY - bounds.top) / bounds.height
 
   if (x < 0 || x > 1 || y < 0 || y > 1) {
     x = 0
