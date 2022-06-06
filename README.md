@@ -15,7 +15,7 @@ npm install --save svg-path-morph
 
 # Demo
 
-https://user-images.githubusercontent.com/8108085/172227203-1091d1e4-8bfe-490a-82dd-884df88c84d6.mp4
+https://user-images.githubusercontent.com/8108085/172227481-1e1e1e9b-6868-41f9-81e0-dfb52ec32e3d.mp4
 
 > See `demo.html` and `src/demo.js` for the implementation of the above demonstration
 
