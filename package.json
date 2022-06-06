@@ -1,6 +1,6 @@
 {
   "name": "svg-path-morph",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Small library for morphing bewtween multiple SVG paths.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
