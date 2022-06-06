@@ -42,5 +42,6 @@ const face = morph(
   ]
 )
 
+// Use the face is the d attribute of a <path> element
 document.getElementById('the-face').setAttribute('d', face)
 ```
