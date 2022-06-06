@@ -1,0 +1,13 @@
+.github
+.nyc_output
+.vscode
+src
+coverage
+node_modules
+.eslintrc.json
+.gitignore
+README.md
+tsconfig.json
+package-lock.json
+*/**/*.test.*
+*/**/*.js.map
