@@ -23,6 +23,9 @@ https://user-images.githubusercontent.com/8108085/172174667-2a9db2d4-0360-4270-b
 
 import { compile, morph } from 'svg-path-morph'
 
+
+// Get the d attributes of the <path> elements 
+// you want to morph between
 const paths = {
   happyFace: 'M6.5 17.5C12.8333 11.6667 38.5 ...',
   angryFace: 'M7 13.5C13.3333 7.66667 36 -5.5...'
