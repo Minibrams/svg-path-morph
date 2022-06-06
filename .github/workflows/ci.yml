@@ -1,0 +1,72 @@
+name: ci
+
+# Run this workflow every time a new commit pushed to your repository
+on: push
+
+jobs:
+  # Set the job key. The key is displayed as the job name
+  # when a job name is not provided
+  run-unit-tests:
+    # Name the Job
+    name: Run unit tests
+    # Set the type of machine to run on
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checks out a copy of your repository on the ubuntu-latest machine
+      - name: Checkout code
+        uses: actions/checkout@v2
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+
+      - name: NPM install
+        run: npm install
+
+      - name: NPM run tests
+        run: npm run test
+      
+      - name: Get code coverage
+        run: |
+          # Generate a temporary script for reading the code coverage
+          echo "
+          import json;
+          coverage = json.load(open('coverage/coverage-summary.json'))['total']['lines']['pct'];
+          print(coverage, end='');
+          " >> get_coverage.py
+          
+          # Get the code coverage, set as Github env var
+          COVERAGE=$(python3 get_coverage.py)
+          echo "COVERAGE=$(echo ${COVERAGE})" >> $GITHUB_ENV
+          
+      - name: Generate code coverage file name
+        run: |
+          # Create a temporary script for converting the refs name
+          echo "
+          import os, sys;
+          refs = sys.stdin.read();
+          
+          # refs/heads/feature/added-command-handler --> feature-added-command-handler
+          branch_name = '-'.join(refs.split('/')[2:]);
+          print(branch_name, end='');
+          " >> get_branch_name.py
+          
+          # Generate the branch name, assign to GITHUB_ENV
+          REF=${{ github.ref }}
+          echo "github.ref: $REF"
+          BRANCH_NAME=$(echo $REF | python3 get_branch_name.py)
+          echo "BRANCH_NAME=$(echo ${BRANCH_NAME})" >> $GITHUB_ENV
+
+      - name: Create code coverage badge
+        uses: schneegans/dynamic-badges-action@v1.0.0
+        with:
+          auth: ${{ secrets.GIST_SECRET }}
+          gistID: 52a42b0e3eb35095e2f81e12d63dc374
+          filename: svg-path-morph__${{ env.BRANCH_NAME }}.json
+          label: coverage
+          labelColor: "#24292E"  # Dark grey
+          message: ${{ env.COVERAGE }}%
+          color: "#34D058"  # Green
+          namedLogo: mocha
+          logoColor: "#959DA5"  # Grey
+
