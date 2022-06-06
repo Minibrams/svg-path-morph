@@ -12,5 +12,35 @@ A simple library for morphing between variations of SVG paths.
 npm install --save svg-path-morph
 ```
 
+# Demo
+
+Use `svg-path-morph` to smoothly morph between X variations of the same SVG path (i.e. same commands, different values):
+
 https://user-images.githubusercontent.com/8108085/172174667-2a9db2d4-0360-4270-bf2b-f5e0f10eb42c.mp4
 
+# Usage
+```typescript
+
+import { compile, morph } from 'svg-path-morph'
+
+const paths = {
+  happyFace: 'M6.5 17.5C12.8333 11.6667 38.5 ...',
+  angryFace: 'M7 13.5C13.3333 7.66667 36 -5.5...'
+}
+
+
+const compiled = compile([ 
+  paths.happy, 
+  paths.angry 
+])
+
+const face = morph(
+  compiled,  // Morph between the happy/angry faces,
+  [
+    0.80,  // 80% happy
+    0.20   // 20% angry
+  ]
+)
+
+document.getElementById('the-face').setAttribute('d', face)
+```
