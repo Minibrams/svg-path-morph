@@ -11,3 +11,7 @@ tsconfig.json
 package-lock.json
 */**/*.test.*
 */**/*.js.map
+static
+dist/bundle.js
+webpack.config.js
+demo.html
