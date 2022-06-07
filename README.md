@@ -10,7 +10,7 @@ Use `svg-path-morph` to smoothly morph between X variations of the same SVG path
 
 # Installation
 ```
-npm install --save svg-path-morph
+npm install svg-path-morph
 ```
 
 # Demo
