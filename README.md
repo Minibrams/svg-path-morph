@@ -27,19 +27,18 @@ import { compile, morph } from 'svg-path-morph'
 
 // Get the d attributes of the <path> elements 
 // you want to morph between
-const paths = {
-  happyFace: 'M6.5 17.5C12.8333 11.6667 38.5 ...',
-  angryFace: 'M7 13.5C13.3333 7.66667 36 -5.5...'
-}
+const happy = document.getElemenyById('happy').getAttribute('d')
+const angry = document.getElemenyById('angry').getAttribute('d')
 
-
+// Compile the morph base (average path embedding)
 const compiled = compile([ 
-  paths.happy, 
-  paths.angry 
+  happy, 
+  angry 
 ])
 
-const face = morph(
-  compiled,  // Morph between the happy/angry faces,
+// Morph between the happy/angry faces
+const slightlyAngry = morph(
+  compiled,
   [
     0.80,  // 80% happy
     0.20   // 20% angry
@@ -47,5 +46,5 @@ const face = morph(
 )
 
 // Use the face is the d attribute of a <path> element
-document.getElementById('the-face').setAttribute('d', face)
+document.getElementById('the-face').setAttribute('d', slightlyAngry)
 ```
