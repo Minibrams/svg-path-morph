@@ -25,8 +25,7 @@ https://user-images.githubusercontent.com/8108085/172227481-1e1e1e9b-6868-41f9-8
 import { compile, morph } from 'svg-path-morph'
 
 
-// Get the d attributes of the <path> elements 
-// you want to morph between
+// Get the d attributes of the <path> elements you want to morph between
 const happy = document.getElemenyById('happy').getAttribute('d')
 const angry = document.getElemenyById('angry').getAttribute('d')
 
