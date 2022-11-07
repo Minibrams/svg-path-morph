@@ -7,13 +7,14 @@
 A simple library for morphing between variations of SVG paths.
 Use `svg-path-morph` to smoothly morph between X variations of the same SVG path (i.e. same commands, different values).
 
-
 # Installation
 ```
 npm install svg-path-morph
 ```
 
 # Demo
+
+A live demo is also available on [my website](https://abrams.dk).
 
 https://user-images.githubusercontent.com/8108085/172227481-1e1e1e9b-6868-41f9-81e0-dfb52ec32e3d.mp4
 
