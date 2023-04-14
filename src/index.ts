@@ -19,7 +19,7 @@ import parse from "parse-svg-path";
  * @returns A object containing:
  * 1. `commands`: An array of path commands,
  * 2. `average`: An array of command parameters as averaged between all passed paths, and
- * 3. `diffs`: An array of command parameters as relative to the average for each pa`th provided in `paths`
+ * 3. `diffs`: An array of command parameters as relative to the average for each path provided in `paths`
  */
 export const compile = (paths: string[]) => {
   const nPaths = paths.length;
@@ -43,18 +43,21 @@ export const compile = (paths: string[]) => {
     average[c] = Array.from({ length: nValues }, () => 0);
     diffs[c] = Array.from({ length: nValues }, () => []);
 
-    for (let p = 0; p < nPaths; p++) {
-      for (let v = 0; v < nValues; v++) {
-        const param = parsedPaths[p][c][v + 1] as number; // Invalid paths aren't allowed by parse-svg-path
-        average[c][v] += param / nPaths;
+    for (let v = 0; v < nValues; v++) {
+      let sum = 0, p = 0;
+      while (p < nPaths) {
+        const param = parsedPaths[p][c][v + 1] as number;
+        sum += param;
+        p++;
       }
-    }
+      average[c][v] = sum / nPaths;
 
-    // Adjust each path's command parameters to be relative to the average
-    for (let p = 0; p < nPaths; p++) {
-      for (let v = 0; v < nValues; v++) {
+      // Adjust each path's command parameters to be relative to the average
+      p = 0;
+      while (p < nPaths) {
         const param = parsedPaths[p][c][v + 1] as number;
         diffs[c][v][p] = param - average[c][v];
+        p++;
       }
     }
   }
