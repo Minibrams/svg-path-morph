@@ -28,13 +28,10 @@ export const compile = (paths: string[]) => {
   const parsedPaths = paths.map(parse) as (string | number)[][][]; // [Path] -> [Command] -> [Type, param1, param2, ...]
   const commands = parsedPaths[0].map(([type]) => type as string); // Array of command types, e.g. ['M', 'L', 'C', ...]
 
-  for (const path of parsedPaths) {
-    if (path.length !== commands.length) throw new Error("All paths must have the same number of commands.");
+  if (parsedPaths.some(path => path.length !== commands.length)) throw new Error("All paths must have the same number of commands.");
 
-    for (let i = 0; i < path.length; i++) {
-      const [type] = path[i];
-      if (type !== commands[i]) throw new Error("All paths must be variations of the same sequence of commands.");
-    }
+  for (let i = 0; i < commands.length; i++) {
+      if (parsedPaths.some(path => path[i][0] !== commands[i])) throw new Error("All paths must be variations of the same sequence of commands.");
   }
 
   const average: number[][] = Array.from({ length: commands.length }, () => []); // The average of all parameters for each command
